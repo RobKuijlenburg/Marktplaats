@@ -5,5 +5,11 @@
 </template>
 
 <script>
-export default {}
+export default {
+    computed: {
+        allArticles(){
+            
+        }
+    }
+}
 </script>

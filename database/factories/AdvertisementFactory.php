@@ -23,7 +23,7 @@ class AdvertisementFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => rand(1, 10),
+            'user_id' => rand(1, 15),
             'img' => 'https://source.unsplash.com/random/800x600',
             'title' => $this->faker->realText($maxNbChars = 20, $indexSize = 2),
             'body' => $this->faker->realText($maxNbChars = 1800, $indexSize = 2),

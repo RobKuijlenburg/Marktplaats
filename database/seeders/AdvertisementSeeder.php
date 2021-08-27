@@ -15,13 +15,13 @@ class AdvertisementSeeder extends Seeder
      */
     public function run()
     {
-        $rubricsCount = Rubric::count();
+        $rubricCount = Rubric::count();
 
         $advertisements = Advertisement::factory(15)->create();
 
-        $advertisements->each(function (Advertisement $advertisement) use ($rubricsCount) {
-            for ($i=0; $i < rand(1, $rubricsCount); $i++) {
-                $advertisement->rubrics()->syncWithoutDetaching(rand(1, $rubricsCount));
+        $advertisements->each(function (Advertisement $advertisement) use ($rubricCount) {
+            for ($i=0; $i < rand(1, $rubricCount); $i++) {
+                $advertisement->rubrics()->syncWithoutDetaching(rand(1, $rubricCount));
             }
         });
     }

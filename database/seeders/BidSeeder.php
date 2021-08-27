@@ -15,14 +15,6 @@ class BidSeeder extends Seeder
      */
     public function run()
     {
-        $advertisementsCount = Advertisement::count();
-
-        $bids = Bid::factory(50)->create();
-
-        $bids->each(function (Bid $bid) use ($advertisementsCount){
-            for ($i=0; $i < rand(1, $advertisementsCount); $i++) {
-                $bid->user()->syncWithoutDetaching(rand(1, $advertisementsCount));
-            }
-        });
+        Bid::factory(50)->create();
     }
 }

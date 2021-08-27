@@ -22,8 +22,8 @@ class MessageFactory extends Factory
     public function definition()
     {
         return [
-            'sender_id' => rand(1, 10),
-            'receiver_id' => rand(1, 10),
+            'sender_id' => rand(1, 20),
+            'receiver_id' => rand(1, 20),
             'subject' => $this->faker->realText($maxNbChars = 200, $indexSize = 2),
             'body' => $this->faker->realText($maxNbChars = 900, $indexSize = 2),
         ];

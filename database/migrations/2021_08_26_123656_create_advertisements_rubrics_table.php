@@ -13,7 +13,7 @@ class CreateAdvertisementsRubricsTable extends Migration
      */
     public function up()
     {
-        Schema::create('advertisements_rubrics', function (Blueprint $table) {
+        Schema::create('advertisement_rubric', function (Blueprint $table) {
             $table->id();
             $table->foreignId('advertisement_id');
             $table->foreignId('rubric_id');
@@ -28,6 +28,6 @@ class CreateAdvertisementsRubricsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('advertisements_rubrics');
+        Schema::dropIfExists('advertisement_rubric');
     }
 }

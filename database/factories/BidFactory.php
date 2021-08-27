@@ -22,8 +22,8 @@ class BidFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => rand(1, 10),
-            'advertisement_id' => rand(1, 10),
+            'user_id' => rand(1, 20),
+            'advertisement_id' => rand(1, 15),
             'bid' => mt_rand(1, 10) / 10,
         ];
     }

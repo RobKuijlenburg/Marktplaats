@@ -17,6 +17,7 @@ class CreateBidsTable extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('advertisement_id');
+            $table->decimal('bid');
             $table->timestamps();
         });
     }

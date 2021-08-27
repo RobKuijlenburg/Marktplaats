@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdvertisementsController;
+use App\Http\Controllers\RubricsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +20,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
+Route::get('/advertisements', [AdvertisementsController::class, 'index']);
+                
+Route::get('/rubrics', [RubricsController::class, 'index']);
 
 // require __DIR__.'/auth.php';

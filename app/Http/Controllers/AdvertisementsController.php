@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Advertisement;
 use Illuminate\Http\Request;
 
 class AdvertisementsController extends Controller
@@ -13,7 +14,9 @@ class AdvertisementsController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json([
+            'advertisements' => Advertisement::all()
+        ]);
     }
 
     /**

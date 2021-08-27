@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rubric;
 use Illuminate\Http\Request;
 
 class RubricsController extends Controller
@@ -13,7 +14,9 @@ class RubricsController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json([
+            'rubrics' => Rubric::all()
+        ]);
     }
 
     /**

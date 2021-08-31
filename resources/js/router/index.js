@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 
 import Home from '../pages/Home.vue'
 import Create from '../pages/Create.vue'
+import Login from '../pages/Auth/Login.vue'
 
 Vue.use(VueRouter);
 
@@ -18,6 +19,12 @@ export default new VueRouter({
             path: "/create",
             name: "Create",
             component: Create
+        },
+
+        {
+            path: "/login",
+            name: "Login",
+            component: Login
         }
     ]
 });

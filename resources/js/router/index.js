@@ -10,11 +10,13 @@ export default new VueRouter({
     routes: [
         {
             path: "/",
+            name: "Home",
             component: Home
         },
 
         {
             path: "/create",
+            name: "Create",
             component: Create
         }
     ]

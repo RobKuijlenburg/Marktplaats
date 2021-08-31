@@ -1,15 +1,20 @@
 <template>
     <div>
-        <h1>{{ message }}</h1>
+        <navigation/>
         <router-view/>
     </div>
 </template>
 
 <script>
+import navigation from "./Components/Nav.vue"
+
 export default {
+    components: {
+        navigation
+    },
+
     data() {
         return {
-            message: "App Hello World",
         };
     },
 };

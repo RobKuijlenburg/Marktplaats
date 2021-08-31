@@ -24,4 +24,6 @@ Route::get('/advertisements', [AdvertisementsController::class, 'index']);
                 
 Route::get('/rubrics', [RubricsController::class, 'index']);
 
+Route::post('/advertisements', [AdvertisementsController::class, 'store']);
+
 // require __DIR__.'/auth.php';

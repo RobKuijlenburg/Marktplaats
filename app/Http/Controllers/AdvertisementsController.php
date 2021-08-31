@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreAdvertisementRequest;
 use App\Models\Advertisement;
+use App\Models\Rubric;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdvertisementsController extends Controller
 {
@@ -35,9 +38,22 @@ class AdvertisementsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreAdvertisementRequest $request)
     {
-        //
+        $validated = $request->validated();
+        
+      
+        // $validated['user_id'] = Auth::user()->id;
+        $validated['user_id'] = 1;
+
+        Advertisement::create($validated)->rubrics()->attach($validated['rubric']);
+        // $validated['premium'] = $validated['premium'] ? true : false;
+        // $path = Storage::putFile('public', $request->file('img'));
+    
+        // $validated['img'] = $path;
+        return response()->json([
+            'advertisements' => Advertisement::all()
+        ]);
     }
 
     /**

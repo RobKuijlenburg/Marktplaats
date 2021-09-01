@@ -10,6 +10,7 @@ export const users = {
     mutations: {
         SET_USER(state, payload){
             state.user = payload;
+            console.log(state.user);
         }
     },
 
@@ -22,14 +23,16 @@ export const users = {
     actions: {
         getUser({commit}){
             axios.get('api/user').then(response => {
-                commit('SET_USER', response.data.user)
+                console.log(response.data)
+                commit('SET_USER', response.data)
             }).catch(error => console.log(error))
         },
 
         loginUser({commit}, payload){
             axios.post('login', payload)
                 .then((response) =>{
-                    commit('SET_USER', response.data.user)
+                    console.log(payload)
+                    commit('SET_USER', payload)
             })
             .catch((error) => {
                 console.log(error);

@@ -33,11 +33,11 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return response()->json([
-            'user' => User::where($request->id)
-        ]);
+        // return response()->json([
+        //     'user' => User::where($request->id)
+        // ]);
 
-        // return redirect()->intended(RouteServiceProvider::HOME);
+        return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**

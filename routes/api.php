@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdvertisementsController;
 use App\Http\Controllers\RubricsController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/advertisements', [AdvertisementsController::class, 'index']);
                 
 Route::get('/rubrics', [RubricsController::class, 'index']);
+
+// Route::get('/user', [UsersController::class, 'index']);
 
 Route::post('/advertisements', [AdvertisementsController::class, 'store']);
 

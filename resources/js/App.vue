@@ -1,6 +1,7 @@
 <template>
     <div>
         <navigation/>
+        <span>{{getUser}}</span>
         <router-view/>
     </div>
 </template>
@@ -17,5 +18,11 @@ export default {
         return {
         };
     },
+
+    computed: {
+        getUser(){
+            return this.$store.getters['users/getUser'];
+        }
+    }
 };
 </script>

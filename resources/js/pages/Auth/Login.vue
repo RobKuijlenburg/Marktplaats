@@ -7,7 +7,7 @@
                     <label for="email">Email</label>
                     <input type="email" name="email" id="email" v-model="login.email" required autofocus>
                     <label for="password">Password</label>
-                    <input type="password" name="password" id="password" v-model="login.password" required autofocus>
+                    <input type="password" name="password" id="password" v-model="login.password" required>
                     <button type="submit">Submit</button>
                 </form>
             </div>
@@ -28,13 +28,13 @@ export default {
 
     methods: {
         submitLogin(){
+            console.log(this.login)
             this.$store.dispatch('users/loginUser', this.login);
         }
     },
 
     computed: {
         getUser(){
-            console.log(this.$store)
             return this.$store.getters['users/getUser'];
         }
     }

@@ -8,6 +8,8 @@
                     <input type="email" name="email" id="email" v-model="login.email" required autofocus>
                     <label for="password">Password</label>
                     <input type="password" name="password" id="password" v-model="login.password" required>
+                    <label for="remember">Remember Me</label>
+                    <input type="checkbox" name="remember" id="remember" v-model="login.remember">
                     <button type="submit">Submit</button>
                 </form>
             </div>
@@ -21,14 +23,14 @@ export default {
         return {
             login: {
                 email: '',
-                password: ''
+                password: '',
+                remember: false
             }
         }
     },
 
     methods: {
         submitLogin(){
-            console.log(this.login)
             this.$store.dispatch('users/loginUser', this.login);
         }
     },

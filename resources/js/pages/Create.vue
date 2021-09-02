@@ -42,6 +42,7 @@ export default {
 
     mounted(){
         this.$store.dispatch('rubrics/getAllRubrics')
+        this.$store.dispatch('users/getUser')
     }
 }
 </script>

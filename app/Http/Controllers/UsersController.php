@@ -15,11 +15,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-
-        // return response()->json([
-        //     'user' => Auth::user()
-        // ]);
-
+dd(Auth::user());
     }
 
     /**

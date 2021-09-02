@@ -1,4 +1,5 @@
 import axios from 'axios';
+import router from '../router';
 
 export const users = {
     namespaced: true,
@@ -23,16 +24,16 @@ export const users = {
     actions: {
         getUser({commit}){
             axios.get('api/user').then(response => {
-                console.log(response.data)
-                commit('SET_USER', response.data)
+                commit('SET_USER', response.data.user)
             }).catch(error => console.log(error))
         },
 
         loginUser({commit}, payload){
-            axios.post('login', payload)
+            axios.post('api/login', payload)
                 .then((response) =>{
-                    console.log(payload)
-                    commit('SET_USER', payload)
+                    console.log(response)
+                    commit('SET_USER', response.data.user)
+                    router.push({name: 'Home'})
             })
             .catch((error) => {
                 console.log(error);

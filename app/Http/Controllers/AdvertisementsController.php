@@ -42,12 +42,10 @@ class AdvertisementsController extends Controller
     {
         $validated = $request->validated();
         
-      
-        // $validated['user_id'] = Auth::user()->id;
-        $validated['user_id'] = 1;
+       
+         $validated['user_id'] = Auth::id();
 
         Advertisement::create($validated)->rubrics()->attach($validated['rubric']);
-        // $validated['premium'] = $validated['premium'] ? true : false;
         // $path = Storage::putFile('public', $request->file('img'));
     
         // $validated['img'] = $path;

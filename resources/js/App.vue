@@ -1,7 +1,6 @@
 <template>
     <div>
         <navigation/>
-        <span>{{getUser}}</span>
         <router-view/>
     </div>
 </template>
@@ -26,3 +25,6 @@ export default {
     }
 };
 </script>
+<style>
+@import '../css/app.css';
+</style>

@@ -3,12 +3,17 @@ import VueRouter from "vue-router";
 
 import Home from '../pages/Home.vue'
 import Create from '../pages/Create.vue'
+import Show from '../pages/Show.vue'
+
 import Login from '../pages/Auth/Login.vue'
+
 
 Vue.use(VueRouter);
 
 export default new VueRouter({
     routes: [
+
+
         {
             path: "/",
             name: "Home",
@@ -25,6 +30,12 @@ export default new VueRouter({
             path: "/login",
             name: "Login",
             component: Login
+        },
+
+        {
+            path: "/show/:id",
+            name: "Show",
+            component: Show
         }
     ]
 });

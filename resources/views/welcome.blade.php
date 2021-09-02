@@ -23,7 +23,7 @@
             @endif
         @endforeach
     @endproduction
-
+    
     <title>{{env('APP_NAME')}}</title>
 </head>
 <body>

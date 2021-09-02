@@ -5,7 +5,7 @@ export const users = {
     namespaced: true,
 
     state: () => ({
-        user: []
+        user: [],
     }),
 
     mutations: {

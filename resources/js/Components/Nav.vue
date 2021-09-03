@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="navigation">
         <ul>
             <li><router-link class="a" :to="{name: 'Home'}">Home</router-link></li>
             <li><router-link class="a" :to="{name: 'Create'}">Create</router-link></li>

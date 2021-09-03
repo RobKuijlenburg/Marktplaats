@@ -62,7 +62,7 @@ class AdvertisementsController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**

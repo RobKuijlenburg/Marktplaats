@@ -6,6 +6,9 @@
             <!-- @if (str_starts_with($article->img, 'http')) -->
             <img class="index_img m-auto" v-bind:src="allAdverts.img" alt="">
             <p class="mt-2 mb-2 h-10 pl-4 pr-4">{{allAdverts.body}}</p>
+
+            <!-- <button v-if="getUser.id == allAdverts.user_id">Set Awesome</button> -->
+            <button v-if="getUser.id === allAdverts.id" :to="{name: 'SetTop'}">Set Awesome</button>
             </div>
         </div>
 

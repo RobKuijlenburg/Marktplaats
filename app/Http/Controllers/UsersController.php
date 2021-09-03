@@ -15,7 +15,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-dd(Auth::user());
+        
     }
 
     /**

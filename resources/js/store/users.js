@@ -9,9 +9,9 @@ export const users = {
     }),
 
     mutations: {
+
         SET_USER(state, payload){
             state.user = payload;
-            console.log(state.user);
         }
     },
 
@@ -24,16 +24,15 @@ export const users = {
     actions: {
         getUser({commit}){
             axios.get('api/user').then(response => {
-                commit('SET_USER', response.data.user)
+                commit('SET_USER', response.data)
             }).catch(error => console.log(error))
         },
 
         loginUser({commit}, payload){
             axios.post('api/login', payload)
                 .then((response) =>{
-                    console.log(response)
                     commit('SET_USER', response.data.user)
-                    router.push({name: 'Home'})
+                    router.push({name: 'Dashboard'})
             })
             .catch((error) => {
                 console.log(error);

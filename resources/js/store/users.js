@@ -28,6 +28,18 @@ export const users = {
             }).catch(error => console.log(error))
         },
 
+        registerUser({commit}, payload){
+            axios.post('api/register', payload)
+                .then((response) =>{
+                    console.log(response.data);
+                    commit('SET_USER', response.data.user)
+                    router.push({name: 'Dashboard'})
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        },
+
         loginUser({commit}, payload){
             axios.post('api/login', payload)
                 .then((response) =>{

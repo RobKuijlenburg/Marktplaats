@@ -6,14 +6,13 @@ import Create from '../pages/Create.vue'
 import Show from '../pages/Show.vue'
 
 import Login from '../pages/Auth/Login.vue'
+import Register from '../pages/Auth/Register.vue'
 
 
 Vue.use(VueRouter);
 
 export default new VueRouter({
     routes: [
-
-
         {
             path: "/",
             name: "Home",
@@ -36,6 +35,12 @@ export default new VueRouter({
             path: "/show/:id",
             name: "Show",
             component: Show
+        },
+
+        {
+            path: "/register",
+            name: "Register",
+            component: Register
         }
     ]
 });

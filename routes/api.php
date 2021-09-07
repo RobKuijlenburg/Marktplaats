@@ -27,4 +27,6 @@ Route::get('/rubrics', [RubricsController::class, 'index']);
 
 Route::post('/advertisements', [AdvertisementsController::class, 'store']);
 
+Route::put('/advertisements/{advertisement}', [AdvertisementsController::class, 'update']);
+
 require __DIR__.'/auth.php';

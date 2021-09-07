@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreAdvertisementRequest;
+use App\Http\Resources\AdvertisementResource;
 use App\Models\Advertisement;
 use App\Models\Rubric;
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ class AdvertisementsController extends Controller
     public function index()
     {
         return response()->json([
-            'advertisements' => Advertisement::all()
+            'advertisements' => AdvertisementResource::collection(Advertisement::all())
         ]);
     }
 
@@ -83,9 +84,15 @@ class AdvertisementsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreAdvertisementRequest $request, Advertisement $advertisement)
     {
-        //
+        $validated = $request->validated();
+        
+        $advertisement->update($validated);
+      
+        return response()->json([
+            'advertisements' => Advertisement::all()
+        ]);
     }
 
     /**

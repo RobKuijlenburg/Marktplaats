@@ -5,6 +5,7 @@ import Home from '../pages/Home.vue'
 import Create from '../pages/Create.vue'
 import Show from '../pages/Show.vue'
 import Dashboard from '../pages/Dashboard.vue'
+import Edit from '../pages/Edit.vue'
 
 import Login from '../pages/Auth/Login.vue'
 import Register from '../pages/Auth/Register.vue'
@@ -46,9 +47,15 @@ export default new VueRouter({
         },
 
         {
-            path: "/dashboard",
+            path: "/dashboard/:id",
             name: "Dashboard",
             component: Dashboard
+        },
+
+        {
+            path: "/edit/:id",
+            name: "Edit",
+            component: Edit
         }
     ]
 });

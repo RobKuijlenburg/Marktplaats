@@ -25,7 +25,7 @@ export const advertisements = {
         },
 
         getUserAdvert: (state) => (id) => {
-            return state.adverts.find(advert => advert.user_id === id)
+            return state.adverts.filter(advert => advert.user_id === id)
         }
     },
 
@@ -39,6 +39,18 @@ export const advertisements = {
         createAdvertisement({commit}, payload){
             axios.post('api/advertisements', payload)
                 .then((response) =>{
+                    commit('SET_ALL_ADVERTS', response.data.advertisements)
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+        },
+
+        // TODO:: request error waarschijnlijk bij storeadvertisementrequest. 
+
+        updateAdvertisement({commit}, payload){
+            axios.put(`api/advertisements/${payload.id}`, payload)
+                .then((response) => {
                     commit('SET_ALL_ADVERTS', response.data.advertisements)
             })
             .catch((error) => {

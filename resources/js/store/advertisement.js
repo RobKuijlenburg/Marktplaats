@@ -22,6 +22,10 @@ export const advertisements = {
 
         getAdvert: (state) => (id) => {
             return state.adverts.find(advert => advert.id === id)
+        },
+
+        getUserAdvert: (state) => (id) => {
+            return state.adverts.find(advert => advert.user_id === id)
         }
     },
 

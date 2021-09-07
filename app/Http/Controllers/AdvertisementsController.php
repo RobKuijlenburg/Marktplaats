@@ -43,7 +43,7 @@ class AdvertisementsController extends Controller
         $validated = $request->validated();
         
        
-         $validated['user_id'] = Auth::id();
+        $validated['user_id'] = Auth::id();
 
         Advertisement::create($validated)->rubrics()->attach($validated['rubric']);
         // $path = Storage::putFile('public', $request->file('img'));

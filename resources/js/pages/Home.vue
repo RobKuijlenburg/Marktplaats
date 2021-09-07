@@ -7,7 +7,7 @@
             <img class="index_img m-auto" v-bind:src="advert.img" alt="">
             <p class="mt-2 mb-2 h-10 pl-4 pr-4">{{advert.body}}</p>
             <router-link :to="`/show/${advert.id}`">Go to Advertisement</router-link>
-    </div>
+            </div>
         </div>
 
     </div>

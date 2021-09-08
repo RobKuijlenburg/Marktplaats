@@ -23,7 +23,7 @@ export default {
             advertisement: {
                 title: '',
                 body: '',
-                rubric: []
+                rubrics: []
             }
         }
     },

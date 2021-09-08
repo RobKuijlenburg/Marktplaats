@@ -19,9 +19,7 @@ export default {
     data(){
         return {
             advertisement: {
-                // title: '',
-                // body: '',
-                // rubric: []
+
             }
         }
     },
@@ -33,27 +31,6 @@ export default {
     },
 
     computed: {
-        // title: {
-        //     get () {
-        //         this.advertisement.title = this.$store.getters['advertisements/getAdvert'](parseInt(this.$route.params.id)).title
-        //         return this.advertisement.title
-        //     },
-
-        //     set (title) {
-        //         this.advertisement.title = title
-        //     }
-        // },
-
-        // body: {
-        //     get () {
-        //         this.advertisement.body = this.$store.getters['advertisements/getAdvert'](parseInt(this.$route.params.id)).body
-        //         return this.advertisement.body
-        //     },
-
-        //     set (body) {
-        //         this.advertisement.body = body
-        //     }
-        // },
         getAdvert(){
             this.advertisement = this.$store.getters['advertisements/getAdvert'](parseInt(this.$route.params.id))
             return this.$store.getters['advertisements/getAdvert'](parseInt(this.$route.params.id))

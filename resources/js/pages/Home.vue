@@ -2,7 +2,7 @@
     <div>
         <div class="contained">
         <div class="advert-container" >
-        <div v-for="advert in filteredAdverts" :key="advert.id">
+        <div v-for="advert in getAllAdverts" :key="advert.id">
                 <div class="w-1/5 text-center content-center justify-center rounded-xl shadow-lg h-3/5 m-2">
                 <h1 class="text-2xl font-semibold"> {{advert.title}} </h1>
                 <!-- @if (str_starts_with($article->img, 'http')) -->

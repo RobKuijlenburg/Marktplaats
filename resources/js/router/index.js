@@ -52,6 +52,7 @@ export default new VueRouter({
             path: "/dashboard/:id",
             name: "Dashboard",
             component: Dashboard,
+            // Kijk hier verder naar!!!
             beforeEnter: (to, from, next) => {
                 const user = store.getters['users/getUser'].id;
                 const loggedIn = store.getters['users/getUser'].id;

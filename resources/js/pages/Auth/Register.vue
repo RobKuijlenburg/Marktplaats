@@ -2,16 +2,19 @@
     <div>
         <div class="container">
             <div class="formcontainer">
-                <h1>Login</h1>
-                <form v-on:submit.prevent="submitLogin">
+                <form v-on:submit.prevent="submitRegister">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name" v-model="register.name" required>
                     <label for="email">Email</label>
-                    <input type="email" name="email" id="email" v-model="login.email" required autofocus>
+                    <input type="email" name="email" id="email" v-model="register.email" required>
                     <label for="password">Password</label>
-                    <input type="password" name="password" id="password" v-model="login.password" required>
-                    <label for="remember">Remember Me</label>
-                    <input type="checkbox" name="remember" id="remember" v-model="login.remember">
+                    <input type="password" name="password" id="password" v-model="register.password" required>
+                    <label for="password_confirmation">Password</label>
+                    <input type="password" name="password_confirmation" id="password_confirmation" v-model="register.password_confirmation" required>
+                    <label for="postal_id">Postal id</label>
+                    <input type="number" name="postal_id" id="postal_id" v-model="register.postalcode_id" required>
                     <button type="submit">Submit</button>
-                </form>
+                    </form>
             </div>
         </div>
     </div>
@@ -19,24 +22,29 @@
 
 <script>
 export default {
-    data() {
+    data(){
         return {
-            login: {
+            register: {
+                name: '',
                 email: '',
                 password: '',
-                remember: false
+                password_confirmation: '',
+                postalcode_id: 0     
             }
         }
     },
 
     methods: {
-        submitLogin(){
-            this.$store.dispatch('users/loginUser', this.login);
+        submitRegister(){
+            this.$store.dispatch('users/registerUser', this.register);
         }
     },
 
     computed: {
-    }
+
+    },
+
+
 }
 </script>
 

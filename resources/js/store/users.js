@@ -28,11 +28,26 @@ export const users = {
             }).catch(error => console.log(error))
         },
 
+        registerUser({commit}, payload){
+            axios.post('api/register', payload)
+                .then((response) =>{
+                    commit('SET_USER', response.data.user)
+                    console.log(response.data.user)
+                    router.push({path: `/dashboard/${id}`})
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        },
+
         loginUser({commit}, payload){
             axios.post('api/login', payload)
                 .then((response) =>{
                     commit('SET_USER', response.data.user)
-                    router.push({name: 'Dashboard'})
+                    setTimeout(function(){
+                        router.push({path: `/dashboard/${response.data.user.id}`})
+                    }, 500);
+                    
             })
             .catch((error) => {
                 console.log(error);

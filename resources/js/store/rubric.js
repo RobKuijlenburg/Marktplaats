@@ -18,6 +18,10 @@ export const rubrics = {
 
         getAllRubrics(state){
             return state.rubrics;
+        },
+
+        getAdvertRubrics: (state) => (id) => {
+            return state.rubrics.filter(rubric => rubric.advertisement_id === id);
         }
 
     },

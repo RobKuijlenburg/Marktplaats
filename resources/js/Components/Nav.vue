@@ -4,6 +4,8 @@
             <li><router-link class="a" :to="{name: 'Home'}">Home</router-link></li>
             <li><router-link class="a" :to="{name: 'Create'}">Create</router-link></li>
             <li><router-link class="a" :to="{name: 'Login'}">Login</router-link></li>
+            <li><router-link class="a" :to="{name: 'Register'}">Register</router-link></li>
+            <li><router-link class="a" :to="{path: `/dashboard/${getUser.id}`}">Dashboard</router-link></li>
         </ul>
     </div>
 </template>
@@ -12,11 +14,22 @@
 
 export default {
     name: 'navigation',
-
+    computed: {
+      getUser(){
+        return this.$store.getters['users/getUser'];
+      }
+    }
 }
 </script>
 
 <style scoped>
+.navigation {
+  position: fixed;
+  top: 0;
+  margin: 0;
+  width: 100%;
+}
+
 ul {
   list-style-type: none;
   margin: 0;
@@ -41,4 +54,6 @@ li .a {
 li .a:hover {
   background-color: #111;
 }
+
+
 </style>

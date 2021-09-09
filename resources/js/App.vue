@@ -1,7 +1,7 @@
 <template>
     <div>
         <navigation/>
-        <router-view/>
+        <router-view class="a"/>
     </div>
 </template>
 
@@ -27,4 +27,7 @@ export default {
 </script>
 <style>
 @import '../css/app.css';
+.a {
+    margin-top: 10%;
+}
 </style>

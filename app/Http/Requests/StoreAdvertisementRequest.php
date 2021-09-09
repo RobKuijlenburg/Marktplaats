@@ -27,7 +27,7 @@ class StoreAdvertisementRequest extends FormRequest
             'img' => '',
             'title' => 'required|max: 255',
             'body' => 'required',
-            'rubric' => 'required'
+            'rubrics' => 'required'
         ];
     }
 }

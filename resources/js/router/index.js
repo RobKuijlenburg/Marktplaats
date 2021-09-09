@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import store from "../store/index";
 
 import Home from '../pages/Home.vue'
 import Create from '../pages/Create.vue'
@@ -9,6 +10,7 @@ import Edit from '../pages/Edit.vue'
 
 import Login from '../pages/Auth/Login.vue'
 import Register from '../pages/Auth/Register.vue'
+import { users } from "../store/users";
 
 
 
@@ -49,7 +51,13 @@ export default new VueRouter({
         {
             path: "/dashboard/:id",
             name: "Dashboard",
-            component: Dashboard
+            component: Dashboard,
+            beforeEnter: (to, from, next) => {
+                const user = store.getters['users/getUser'].id;
+                const loggedIn = store.getters['users/getUser'].id;
+                if (to.name === 'Dashboard' && user === loggedIn) next({path: `/dashboard/${user}`})
+                else next({name: "Home"})
+            }
         },
 
         {
@@ -59,3 +67,4 @@ export default new VueRouter({
         }
     ]
 });
+

@@ -28,6 +28,6 @@ export default {
 <style>
 @import '../css/app.css';
 .a {
-    margin-top: 10%;
+    margin-top: 5%;
 }
 </style>

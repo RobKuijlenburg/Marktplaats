@@ -2,27 +2,53 @@
     <div class="navigation">
         <ul>
             <li><router-link class="a" :to="{name: 'Home'}">Home</router-link></li>
-            <li><router-link class="a" :to="{name: 'Create'}">Create</router-link></li>
-            <li><router-link class="a" :to="{name: 'Login'}">Login</router-link></li>
-            <li><router-link class="a" :to="{name: 'Register'}">Register</router-link></li>
-            <li><router-link class="a" :to="{path: `/dashboard/${getUser.id}`}">Dashboard</router-link></li>
+            <li v-if="getLoggedIn"><router-link class="a" :to="{name: 'Create'}">Create</router-link></li>
+            <li v-if="!getLoggedIn"><router-link class="a" :to="{name: 'Login'}">Login</router-link></li>
+            <li v-if="!getLoggedIn"><router-link class="a" :to="{name: 'Register'}">Register</router-link></li>
+            <li v-if="getLoggedIn"><router-link class="a" :to="{path: `/dashboard/${getUser.id}`}">Dashboard</router-link></li>
+            <li v-if="getLoggedIn"><a class="a" @click.prevent="removeUser">Logout</a></li>
+            <span v-if="getUser" class="user">{{getUser.name}}</span>
         </ul>
+        
     </div>
 </template>
 
 <script>
+import axios from 'axios';
 
 export default {
     name: 'navigation',
+
+    methods: {
+      removeUser(){
+        
+        axios.post('api/logout')
+          .then(() => 
+             location.href = '/'
+          );
+      }
+    },
+
     computed: {
       getUser(){
         return this.$store.getters['users/getUser'];
+      },
+
+      getLoggedIn(){
+        return this.$store.getters['users/getLoginState'];
       }
     }
 }
 </script>
 
 <style scoped>
+.user {
+  float: right;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+}
+
 .navigation {
   position: fixed;
   top: 0;

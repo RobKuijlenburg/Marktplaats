@@ -1,9 +1,9 @@
 <template>
     <div>
         <div class="contained">
-        <div class="advert-container" >
+        <div class="pannenkoeken">
         <div v-for="advert in getAllAdverts" :key="advert.id">
-                <div class="w-1/5 text-center content-center justify-center rounded-xl shadow-lg h-3/5 m-2">
+                <div class="w-1/5 text-center content-center justify-center rounded-xl shadow-lg h-3/5 m-2 px-5 py-4">
                 <h1 class="text-2xl font-semibold"> {{advert.title}} </h1>
                 <!-- @if (str_starts_with($article->img, 'http')) -->
                 <img class="index_img m-auto" v-bind:src="advert.img" alt="">
@@ -12,43 +12,39 @@
             </div>
             </div>
         </div>
-        <div class="search-container">
+        <div class="search-container w-1/5 text-center content-center justify-center rounded-xl shadow-lg h-3/5 pt-4 px-5 pb-5">
             <h1>Search</h1>
-            <input type="search" v-model="searchWord">
+            <input type="search" v-model="searchAdverts">
         </div>
         </div>
     </div>
 </template>
 
 <script>
-import { mapGetters, mapActions} from 'vuex';
-
 export default {
     
+    data() {
+        return {
+            searchAdverts: '',
+        }
+    },
 
     computed: {
-        ...mapGetters({
-            getAllAdverts: 'advertisements/getAllAdverts',
-            getUser: 'users/getUser'
-        }),
+        getAllAdverts() {
+            const searchAdverts = this.searchAdverts.trim().toLowerCase();
+            const adverts = this.$store.getters['advertisements/getAllAdverts'];
+            if (!adverts) return [];
 
-        filteredAdverts(){
-            try{
-                let a = (this.$store.getters['advertisements/getFilteredAdverts'] || this.$store.getters['advertisements/getAllAdverts'])
-                return a
-            } catch (error) {
-                console.log(error);
-            }
+            return adverts.filter(({title, body}) => {
+                if (searchAdverts && !title.toLowerCase().includes(searchAdverts)) return false;
+                if (searchAdverts && !body.toLowerCase().includes(searchAdverts)) return false;
+                return true;
+            });
         },
 
-        searchWord: {
-            get(){
-                return this.$store.state['advertisements/searchWord']
-            },
-            set (value){
-                this.$store.dispatch('advertisements/getFilteredAdverts', value)
-            }
-        }
+        getUser() {
+            return this.$store.getters['users/getUser']
+        },
     },
     mounted(){
         this.$store.dispatch('advertisements/getAllAdverts');
@@ -62,7 +58,7 @@ export default {
         display: flex;
     }
 
-    .advert-container {
+    .pannenkoeken {
         display: grid;
         grid-template: 200px 200px;
         grid-row: auto auto;

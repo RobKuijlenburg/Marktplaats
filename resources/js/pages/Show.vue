@@ -13,7 +13,7 @@
                 <ul>
                     <li v-for="bids in advert.bids" :key="bids.id"><span v-html="'&#8364;'"></span>{{bids.bid}}</li>
                 </ul>
-                <form v-on:submit.prevent="placeBid">
+                <form v-if="getLoggedIn" v-on:submit.prevent="placeBid">
                     <input type="number" v-model="bids.bid" step="any">
                     <button type="submit">Place Bid</button>
                 </form>
@@ -28,6 +28,7 @@ export default {
     data(){
         return {
             bids: {
+                advertisement_id: parseInt(this.$route.params.id),
                 bid: 0
             }
         }
@@ -42,6 +43,10 @@ export default {
     computed: {
         advert(){
             return this.$store.getters['advertisements/getAdvert'](parseInt(this.$route.params.id));
+        },
+
+        getLoggedIn(){
+            return this.$store.getters['users/getLoginState'];
         },
 
         getUser(){

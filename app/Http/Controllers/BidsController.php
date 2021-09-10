@@ -45,15 +45,11 @@ class BidsController extends Controller
    
         $validated['user_id'] = Auth::id();
         
-        dd(Advertisement::all());
-        $validated['advertisement_id'] = Advertisement::find($id);
-
         Bid::create($validated);
 
         return response()->json([
             'bids' => Bid::all()
         ]);
-        
     }
 
     /**

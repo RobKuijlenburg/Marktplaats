@@ -1,14 +1,22 @@
 <template>
     <div>
-        <div>
-            <div class="w-1/5 text-center content-center justify-center rounded-xl shadow-lg h-3/5 m-2">
-            <h1 class="text-2xl font-semibold"> {{allAdverts.title}} </h1>
-            <!-- @if (str_starts_with($article->img, 'http')) -->
-            <img class="index_img m-auto" v-bind:src="allAdverts.img" alt="">
-            <p class="mt-2 mb-2 h-10 pl-4 pr-4">{{allAdverts.body}}</p>
 
-            <!-- <button v-if="getUser.id == allAdverts.user_id">Set Awesome</button> -->
-            <button v-if="getUser.id === allAdverts.id" :to="{name: 'SetTop'}">Set Awesome</button>
+        <div class="flex">
+            <div class="w-1/5 text-center content-center justify-center rounded-xl shadow-lg h-3/5 m-2 advert">
+            <h1 class="text-2xl font-semibold"> {{advert.title}} </h1>
+            <!-- @if (str_starts_with($article->img, 'http')) -->
+            <img class="index_img m-auto" v-bind:src="advert.img" alt="">
+            <p class="mt-2 mb-2 h-10 pl-4 pr-4">{{advert.body}}</p>
+
+            </div>
+            <div class="bids text-center content-center justify-center shadow-lg m-2">
+                <ul>
+                    <li v-for="bids in advert.bids" :key="bids.id"><span v-html="'&#8364;'"></span>{{bids.bid}}</li>
+                </ul>
+                <form v-on:submit.prevent="placeBid">
+                    <input type="number" v-model="bids.bid" step="any">
+                    <button type="submit">Place Bid</button>
+                </form>
             </div>
         </div>
 
@@ -17,9 +25,22 @@
 
 <script>
 export default {
+    data(){
+        return {
+            bids: {
+                bid: 0
+            }
+        }
+    },
+
+    methods: {
+        placeBid(){
+            this.$store.dispatch('bids/createBid', this.bids)
+        }
+    },
 
     computed: {
-        allAdverts(){
+        advert(){
             return this.$store.getters['advertisements/getAdvert'](parseInt(this.$route.params.id));
         },
 
@@ -29,6 +50,25 @@ export default {
     },
     mounted(){
         this.$store.dispatch('advertisements/getAllAdverts');
+        this.$store.dispatch('users/getUser');
     }
 }
 </script>
+
+<style scoped>
+    .flex{
+        display:flex;
+    }
+    .advert{
+        width: 80%;
+        padding: 20px 20px;
+    }
+    .bids {
+        width: 20%;
+    }
+    .bids li{
+        list-style: none;
+    }
+    
+
+</style>

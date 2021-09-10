@@ -14,6 +14,7 @@ import { users } from "../store/users";
 
 
 
+
 Vue.use(VueRouter);
 
 export default new VueRouter({
@@ -53,18 +54,30 @@ export default new VueRouter({
             name: "Dashboard",
             component: Dashboard,
             // Kijk hier verder naar!!!
-            beforeEnter: (to, from, next) => {
-                const user = store.getters['users/getUser'].id;
-                const loggedIn = store.getters['users/getUser'].id;
-                if (to.name === 'Dashboard' && user === loggedIn) next({path: `/dashboard/${user}`})
-                else next({name: "Home"})
+            beforeEnter: (to, from, next) => {             
+                const loggedIn = store.getters['users/getLoginState'];
+                const userId = store.getters['users/getUser'].id;
+                    if (loggedIn && parseInt(to.params.id) === userId) 
+                        next()
+                    else next({name: "Home"})
             }
         },
 
         {
             path: "/edit/:id",
             name: "Edit",
-            component: Edit
+            component: Edit,
+            // beforeEnter: (to, from, next) => {
+            //     const loggedIn = store.getters['users/getLoginState'];
+            //     const userId = store.getters['users/getUser'].id;
+                
+            //     const advertId = store.getters['advertisements/getUserAdvert'](userId);
+            //     console.log('pan', loggedIn, userId, advertId)
+ 
+            //         if(loggedIn && advertId === userId)
+            //             next()
+            //         else next({name: "Dashboard"});
+            // }
         }
     ]
 });

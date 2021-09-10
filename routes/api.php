@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\AdvertisementsController;
+use App\Http\Controllers\BidsController;
 use App\Http\Controllers\RubricsController;
-use App\Http\Controllers\UsersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,3 +30,10 @@ Route::post('/advertisements', [AdvertisementsController::class, 'store']);
 require __DIR__.'/auth.php';
 
 Route::put('/advertisements/{advertisement}', [AdvertisementsController::class, 'update']);
+
+Route::get('/bids', [BidsController::class, 'index']);
+
+Route::post('/bids', [BidsController::class, 'store']);
+
+Route::put('/bids/{bid}', [BidsController::class, 'update']);
+

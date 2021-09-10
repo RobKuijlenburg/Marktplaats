@@ -78,6 +78,7 @@ li .a {
 
 /* Change the link color to #111 (black) on hover */
 li .a:hover {
+  cursor: pointer;
   background-color: #111;
 }
 

@@ -22,6 +22,7 @@ class AdvertisementResource extends JsonResource
             'title' => $this->title,
             'user_id' => $this->user_id,
             'rubrics' => $this->rubrics->pluck('id'),
+            'bids' => $this->bids
         ];
     }
 }

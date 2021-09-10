@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreBidRequest;
+use App\Models\Advertisement;
+use App\Models\Bid;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BidsController extends Controller
 {
@@ -13,7 +17,9 @@ class BidsController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json([
+            'bids' => Bid::all()
+        ]);
     }
 
     /**
@@ -32,9 +38,22 @@ class BidsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreBidRequest $request)
     {
-        //
+        
+        $validated = $request->validated();
+   
+        $validated['user_id'] = Auth::id();
+        
+        dd(Advertisement::all());
+        $validated['advertisement_id'] = Advertisement::find($id);
+
+        Bid::create($validated);
+
+        return response()->json([
+            'bids' => Bid::all()
+        ]);
+        
     }
 
     /**
@@ -66,9 +85,15 @@ class BidsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreBidRequest $request, Bid $bid)
     {
-        //
+        $validated = $request->validated();
+
+        $bid->update($validated);
+
+        return response()->json([
+            'bids' => Bid::all()
+        ]);
     }
 
     /**

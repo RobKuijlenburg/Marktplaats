@@ -25,7 +25,7 @@ class Advertisement extends Model
 
     public function bids() {
         
-        return $this->hasMany(Bids::class);
+        return $this->hasMany(Bid::class);
 
     }
 

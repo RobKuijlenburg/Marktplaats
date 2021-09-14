@@ -101,8 +101,13 @@ class AdvertisementsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Advertisement $advertisement)
     {
-        //
+        // Storage::delete($advertisement->img);
+        // $advertisement->comments()->delete();
+        $advertisement->delete();
+        return response()->json([
+            'advertisements' => Advertisement::all()
+        ]);
     }
 }

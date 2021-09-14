@@ -55,10 +55,10 @@ export const advertisements = {
             })
         },
 
-        destroyAdvert({commit}){
-            axios.delete(`api/delete`)
+        destroyAdvert({commit}, payload){
+            axios.delete(`/api/delete/${payload.id}`,payload)
             .then((response) => {
-                console.log(response)
+                commit(response.data.advertisements)
             })
         }
     },

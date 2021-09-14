@@ -5,9 +5,7 @@
             <router-link class="m"
             :to="`/edit/${advert.id}/${advert.user_id}`">Edit
             </router-link>
-            <form v-on:submit.prevent="destroyAdvert">
-                <button type="submit">Delete</button>
-            </form>
+            <a @click.prevent="destroyAdvert">Delete</a>
             <button class="m" :to="{name: 'SetTop'}">Be On Top</button>
             <ul>
                 <li v-for="bids in advert.bids" :key="bids.id">
@@ -20,10 +18,15 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
     methods: {
         destroyAdvert(){
-            this.$store.dispatch('advertisments/destroyAdvert');
+            axios.post('/api/destroy')
+                .then(() => 
+             location.href = '/'
+          );
         }
     },
 

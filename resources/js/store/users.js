@@ -18,6 +18,7 @@ export const users = {
 
         DESTOY_USER(state){
             state.user = []
+            loggedIn = false
         }
     },
 
@@ -33,13 +34,17 @@ export const users = {
 
     actions: {
         getUser({commit}){
-            axios.get('api/user').then(response => {
+            axios.get('/api/user').then(response => {
                 commit('SET_USER', response.data)
             }).catch(error => console.log(error))
         },
+        
+        destroyUser({commit}){
+            commit('DESTROY_USER');
+        },
 
         registerUser({commit}, payload){
-            axios.post('api/register', payload)
+            axios.post('/api/register', payload)
                 .then((response) =>{
                     commit('SET_USER', response.data.user)
                     setTimeout(() => {
@@ -53,10 +58,9 @@ export const users = {
         },
 
         loginUser({commit}, payload){
-            axios.post('api/login', payload)
+            axios.post('/api/login', payload)
                 .then((response) =>{
                     commit('SET_USER', response.data.user)
-                    console.log(response.data.user)
                         router.push({path: `/dashboard/${response.data.user.id}`})                  
             })
             .catch((error) => {

@@ -22,7 +22,7 @@ export default {
     methods: {
       removeUser(){
         
-        axios.post('api/logout')
+        axios.post('/api/logout')
           .then(() => 
              location.href = '/'
           );

@@ -18,6 +18,7 @@ import { users } from "../store/users";
 Vue.use(VueRouter);
 
 export default new VueRouter({
+    mode: 'history',
     routes: [
         {
             path: "/",
@@ -28,7 +29,13 @@ export default new VueRouter({
         {
             path: "/create",
             name: "Create",
-            component: Create
+            component: Create,
+            beforeEnter: (to, from , next) => {
+                const loggedIn = store.getters['users/getLoginState'];
+                if (loggedIn === true) 
+                next()
+                else next({name: "Home"})
+            }
         },
 
         {
@@ -53,10 +60,9 @@ export default new VueRouter({
             path: "/dashboard/:id",
             name: "Dashboard",
             component: Dashboard,
-            // Kijk hier verder naar!!!
-            beforeEnter: (to, from, next) => {             
+            beforeEnter: (to, from, next) => {       
+                const userId = store.getters['users/getUser'].id;      
                 const loggedIn = store.getters['users/getLoginState'];
-                const userId = store.getters['users/getUser'].id;
                     if (loggedIn && parseInt(to.params.id) === userId) 
                         next()
                     else next({name: "Home"})
@@ -64,20 +70,17 @@ export default new VueRouter({
         },
 
         {
-            path: "/edit/:id",
+            path: "/edit/:id/:user_id",
             name: "Edit",
             component: Edit,
-            // beforeEnter: (to, from, next) => {
-            //     const loggedIn = store.getters['users/getLoginState'];
-            //     const userId = store.getters['users/getUser'].id;
-                
-            //     const advertId = store.getters['advertisements/getUserAdvert'](userId);
-            //     console.log('pan', loggedIn, userId, advertId)
- 
-            //         if(loggedIn && advertId === userId)
-            //             next()
-            //         else next({name: "Dashboard"});
-            // }
+            beforeEnter: (to, from, next) => {
+                const loggedIn = store.getters['users/getLoginState'];
+                const userId = store.getters['users/getUser'].id;
+                const advertUserId = parseInt(to.params.user_id);
+                    if(loggedIn && advertUserId === userId)
+                        next()
+                    else next({name: "Dashboard"});
+            }
         }
     ]
 });

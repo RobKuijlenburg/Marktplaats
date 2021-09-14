@@ -22,7 +22,7 @@ export default {
         getUser(){
             return this.$store.getters['users/getUser'];
         }
-    }
+    },
 };
 </script>
 <style>

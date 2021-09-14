@@ -19,7 +19,7 @@ class AdvertisementsController extends Controller
     public function index()
     {
         return response()->json([
-            'advertisements' => AdvertisementResource::collection(Advertisement::all())
+            'advertisements' => AdvertisementResource::collection(Advertisement::orderBy('created_at', 'desc')->get())
         ]);
     }
 
@@ -46,7 +46,7 @@ class AdvertisementsController extends Controller
        
         $validated['user_id'] = Auth::id();
 
-        Advertisement::create($validated)->rubrics()->attach($validated['rubric']);
+        Advertisement::create($validated)->rubrics()->attach($validated['rubrics']);
         // $path = Storage::putFile('public', $request->file('img'));
     
         // $validated['img'] = $path;

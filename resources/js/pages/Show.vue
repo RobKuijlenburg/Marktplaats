@@ -11,7 +11,10 @@
             </div>
             <div class="bids text-center content-center justify-center shadow-lg m-2">
                 <ul>
-                    <li v-for="bids in advert.bids" :key="bids.id"><span v-html="'&#8364;'"></span>{{bids.bid}}</li>
+                    <li v-for="bids in advert.bids" :key="bids.id">
+                        <span v-html="'&#8364;'"></span>
+                        {{bids.bid}}
+                    </li>
                 </ul>
                 <form v-if="getLoggedIn" v-on:submit.prevent="placeBid">
                     <input type="number" v-model="bids.bid" step="any">
@@ -55,7 +58,9 @@ export default {
     },
     mounted(){
         this.$store.dispatch('advertisements/getAllAdverts');
+        if(this.$store.getters['users/getLoginState'] === true){
         this.$store.dispatch('users/getUser');
+        }
     }
 }
 </script>

@@ -6,7 +6,7 @@
         <textarea name="advertisement.body" id="body" cols="30" rows="10" placeholder="Add your text here" v-model="advertisement.body"></textarea>
         <div class="flex" v-for="rubric in allRubrics" :key="rubric.id" v-bind:value="rubric.value">
             <div>
-                <input type="checkbox"   :value="rubric.id" v-model="advertisement.rubric">
+                <input type="checkbox"   :value="rubric.id" v-model="advertisement.rubrics">
                 <label :for="rubric.name">{{rubric.name}}</label>
             </div>
         </div>

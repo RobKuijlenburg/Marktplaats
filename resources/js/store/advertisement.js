@@ -30,13 +30,13 @@ export const advertisements = {
 
     actions: {
         getAllAdverts({commit}){
-            axios.get('api/advertisements').then(response => {
+            axios.get('/api/advertisements').then(response => {
                 commit('SET_ALL_ADVERTS', response.data.advertisements)
             }).catch(error => console.log(error))
         },
 
         createAdvertisement({commit}, payload){
-            axios.post('api/advertisements', payload)
+            axios.post('/api/advertisements', payload)
                 .then((response) =>{
                     commit('SET_ALL_ADVERTS', response.data.advertisements)
             })
@@ -46,12 +46,19 @@ export const advertisements = {
         },
 
         updateAdvertisement({commit}, payload){
-            axios.put(`api/advertisements/${payload.id}`, payload)
+            axios.put(`/api/advertisements/${payload.id}`, payload)
                 .then((response) => {
                     commit('SET_ALL_ADVERTS', response.data.advertisements)
             })
             .catch((error) => {
                 console.log(error);
+            })
+        },
+
+        destroyAdvert({commit}){
+            axios.delete(`api/delete`)
+            .then((response) => {
+                console.log(response)
             })
         }
     },

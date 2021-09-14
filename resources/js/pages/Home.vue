@@ -15,6 +15,12 @@
         <div class="search-container w-1/5 text-center content-center justify-center rounded-xl shadow-lg h-3/5 pt-4 px-5 pb-5">
             <h1>Search</h1>
             <input type="search" v-model="searchAdverts">
+            <div class="flex" v-for="rubric in getAllRubrics" :key="rubric.id" v-bind:value="rubric.value">
+            <div>
+                <input type="checkbox"   :value="rubric.id" v-model="searchCategories">
+                <label :for="rubric.name">{{rubric.name}}</label>
+            </div>
+        </div>
         </div>
         </div>
     </div>
@@ -26,18 +32,27 @@ export default {
     data() {
         return {
             searchAdverts: '',
+            searchCategories: [],
+        }
+    },
+
+    methods:{
+        checker(arr, target){
+            return target.every(v => arr.includes(v));
         }
     },
 
     computed: {
         getAllAdverts() {
             const searchAdverts = this.searchAdverts.trim().toLowerCase();
+            const searchCategories = this.searchCategories;
             const adverts = this.$store.getters['advertisements/getAllAdverts'];
             if (!adverts) return [];
 
-            return adverts.filter(({title, body}) => {
+            return adverts.filter(({title, body, rubrics}) => {
                 if (searchAdverts && !title.toLowerCase().includes(searchAdverts)) return false;
                 if (searchAdverts && !body.toLowerCase().includes(searchAdverts)) return false;
+                if (searchCategories && !this.checker(rubrics, searchCategories)) return false;
                 return true;
             });
         },
@@ -45,10 +60,17 @@ export default {
         getUser() {
             return this.$store.getters['users/getUser']
         },
+
+        getAllRubrics(){
+            return this.$store.getters['rubrics/getAllRubrics']
+        }
     },
     mounted(){
         this.$store.dispatch('advertisements/getAllAdverts');
+        this.$store.dispatch('rubrics/getAllRubrics');
+        if(this.$store.getters['users/getLoginState'] === true){
         this.$store.dispatch('users/getUser');
+        }
     }
 }
 </script>
@@ -69,5 +91,13 @@ export default {
         left: 75%;
         position: fixed;
         float: right;
+    }
+
+    .flex {
+        display: flex;
+    }
+
+    .flex div input{
+        margin-right: 2px;
     }
 </style>

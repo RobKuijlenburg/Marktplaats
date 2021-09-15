@@ -15,6 +15,4 @@ class Rubric extends Model
         return $this->belongsToMany(Advertisement::class);
 
     }
-
-
 }

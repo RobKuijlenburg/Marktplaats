@@ -106,7 +106,7 @@ class AdvertisementsController extends Controller
         // Storage::delete($advertisement->img);
         // $advertisement->comments()->delete();
         $advertisement->bids()->delete();
-        $advertisement->rubrics()->delete();
+        $advertisement->rubrics()->detach();
         $advertisement->delete();
         return response()->json([
             'advertisements' => Advertisement::all()

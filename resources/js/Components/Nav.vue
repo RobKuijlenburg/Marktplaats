@@ -21,11 +21,7 @@ export default {
 
     methods: {
       removeUser(){
-        
-        axios.post('/api/logout')
-          .then(() => 
-             location.href = '/'
-          );
+        this.$store.dispatch('users/destroyUser')
       }
     },
 

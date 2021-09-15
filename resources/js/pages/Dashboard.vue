@@ -35,7 +35,7 @@ export default {
         destroyAdvert(id){
             axios.delete(`/api/delete/${id}`)
                 .then(() => { 
-                    router.push({name: "Dashboard"})
+                    router.push({name: "Home"})
             })
                 .catch((error) => {
                     console.log(error)

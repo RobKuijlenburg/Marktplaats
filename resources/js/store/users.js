@@ -1,12 +1,12 @@
 import axios from 'axios';
 import router from '../router';
-
+const user = JSON.parse(localStorage.getItem('user'));
 export const users = {
     namespaced: true,
 
     state: () => ({
-        user: [],
-        loggedIn: false
+        user: user,
+        loggedIn: !!user
     }),
 
     mutations: {
@@ -14,11 +14,14 @@ export const users = {
         SET_USER(state, payload){
             state.user = payload;
             state.loggedIn = true;
+            localStorage.setItem('user', JSON.stringify(payload));
         },
 
-        DESTOY_USER(state){
+        DESTROY_USER(state){
             state.user = []
             loggedIn = false
+            localStorage.removeItem('user');
+            router.push({name: "Home"})
         }
     },
 
@@ -40,7 +43,13 @@ export const users = {
         },
         
         destroyUser({commit}){
-            commit('DESTROY_USER');
+            axios.post('/api/logout')
+            .then(() => 
+            commit('DESTROY_USER')   
+            ) 
+            .catch((error) =>{
+                console.log(error);
+            })
         },
 
         registerUser({commit}, payload){

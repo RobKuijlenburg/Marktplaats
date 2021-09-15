@@ -68,9 +68,7 @@ export default {
     mounted(){
         this.$store.dispatch('advertisements/getAllAdverts');
         this.$store.dispatch('rubrics/getAllRubrics');
-        if(this.$store.getters['users/getLoginState'] === true){
         this.$store.dispatch('users/getUser');
-        }
     }
 }
 </script>

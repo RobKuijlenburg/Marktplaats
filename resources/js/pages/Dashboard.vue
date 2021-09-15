@@ -5,7 +5,7 @@
             <router-link class="m"
             :to="`/edit/${advert.id}/${advert.user_id}`">Edit
             </router-link>
-            <a @click.prevent="destroyAdvert">Delete</a>
+            <a @click.prevent="destroyAdvert(advert.id)">Delete</a>
             <button class="m" :to="{name: 'SetTop'}">Be On Top</button>
             <ul>
                 <li v-for="bids in advert.bids" :key="bids.id">
@@ -21,12 +21,23 @@
 import axios from "axios";
 
 export default {
+    data() {
+        return {
+            advert: {
+                id: 0
+            }
+        }
+    },
+
     methods: {
-        destroyAdvert(){
-            axios.post('/api/destroy')
-                .then(() => 
-             location.href = '/'
-          );
+        destroyAdvert(id){
+            axios.delete(`/api/delete/${id}`)
+                .then((response) => { 
+                    console.log(response)
+            })
+                .catch((error) => {
+                    console.log(error)
+            })
         }
     },
 

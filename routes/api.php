@@ -37,4 +37,4 @@ Route::post('/bids', [BidsController::class, 'store']);
 
 Route::put('/bids/{bid}', [BidsController::class, 'update']);
 
-Route::delete('/delete', [AdvertisementsController::class, 'destroy']);
+Route::delete('/delete/{advertisement}', [AdvertisementsController::class, 'destroy']);

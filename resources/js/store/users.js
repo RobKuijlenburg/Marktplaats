@@ -1,6 +1,8 @@
 import axios from 'axios';
 import router from '../router';
+
 const user = JSON.parse(localStorage.getItem('user'));
+
 export const users = {
     namespaced: true,
 

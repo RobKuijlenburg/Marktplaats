@@ -42,8 +42,9 @@ export default {
             this.imageUrl = fileReader.result
             })
             fileReader.readAsDataURL(files[0])
-            this.advertisement.img = files
+            this.advertisement.img = files[0]
         },
+
         submitAdvertisement(){
             const data = new FormData();
             data.append('body', this.advertisement.body);

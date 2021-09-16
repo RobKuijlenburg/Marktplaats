@@ -44,8 +44,8 @@ class AdvertisementsController extends Controller
     {
         $validated = $request->validated();
         $validated['user_id'] = Auth::id();
-        dd($request->img);
-        $path = Storage::putFile('public', $request->img);
+
+        $path = Storage::putFile('public', $request->file('img'));
     
         $validated['img'] = $path;
 

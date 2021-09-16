@@ -44,12 +44,13 @@ class AdvertisementsController extends Controller
     {
         $validated = $request->validated();
         $validated['user_id'] = Auth::id();
-
+        
+        // dd($validated['rubrics'], explode(',', $validated['rubrics']));
         $path = Storage::putFile('public', $request->file('img'));
     
         $validated['img'] = $path;
 
-        Advertisement::create($validated)->rubrics()->attach($validated['rubrics']);
+        Advertisement::create($validated)->rubrics()->attach(explode(',', $validated['rubrics']));
   
         return response()->json([
             'advertisements' => Advertisement::all()
@@ -104,8 +105,7 @@ class AdvertisementsController extends Controller
      */
     public function destroy(Advertisement $advertisement)
     {
-        // Storage::delete($advertisement->img);
-        // $advertisement->comments()->delete();
+        Storage::delete($advertisement->img);
         $advertisement->bids()->delete();
         $advertisement->rubrics()->detach();
         $advertisement->delete();

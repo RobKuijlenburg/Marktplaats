@@ -4,8 +4,8 @@
         <div class="flex">
             <div class="w-1/5 text-center content-center justify-center rounded-xl shadow-lg h-3/5 m-2 advert">
             <h1 class="text-2xl font-semibold"> {{advert.title}} </h1>
-            <!-- @if (str_starts_with($article->img, 'http')) -->
-            <img class="index_img m-auto" v-bind:src="advert.img" alt="">
+            <img v-if="(advert.img).startsWith('http')" class="index_img m-auto" v-bind:src="advert.img" alt="">
+            <img v-else class="index_img m-auto" v-bind:src="'../storage/'+ advert.img" alt="">
             <p class="mt-2 mb-2 h-10 pl-4 pr-4">{{advert.body}}</p>
 
             </div>
@@ -66,6 +66,11 @@ export default {
 </script>
 
 <style scoped>
+    .index_img{
+        width: 700px;
+        height: auto;
+    }
+
     .flex{
         display:flex;
     }

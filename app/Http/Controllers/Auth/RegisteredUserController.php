@@ -37,14 +37,14 @@ class RegisteredUserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'postalcode_id' => 'nullable'
+            'postcode_id' => 'nullable'
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'postalcode_id' => intval($request->postalcode_id)
+            'postcode_id' => intval($request->postcode_id)
         ]);
 
         event(new Registered($user));

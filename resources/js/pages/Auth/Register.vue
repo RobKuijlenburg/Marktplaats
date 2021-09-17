@@ -12,7 +12,7 @@
                     <label for="password_confirmation">Password</label>
                     <input type="password" name="password_confirmation" id="password_confirmation" v-model="register.password_confirmation" required>
                     <label for="postal_id">Postal id</label>
-                    <input type="number" name="postal_id" id="postal_id" v-model="register.postalcode_id" required>
+                    <input type="number" name="postal_id" id="postal_id" v-model="register.postcode_id" required>
                     <button type="submit">Submit</button>
                     </form>
             </div>
@@ -29,7 +29,7 @@ export default {
                 email: '',
                 password: '',
                 password_confirmation: '',
-                postalcode_id: 0     
+                postcode_id: 0     
             }
         }
     },

@@ -68,6 +68,13 @@ export const users = {
                 })
         },
 
+        // loggedInUser(payload){
+        //     axios.post('/api/login', payload)
+        //         .then(() =>{
+        //             router.push({name: "Home"});
+        //         })
+        // },
+
         loginUser({commit}, payload){
             axios.post('/api/login', payload)
                 .then((response) =>{

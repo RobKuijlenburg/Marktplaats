@@ -46,6 +46,16 @@ export const advertisements = {
             })
         },
 
+        searchForDistance({commit}, payload){
+            axios.post(`/api/advertisements/search`, payload)
+                .then((response) => {
+                    commit('SET_ALL_ADVERTS', response.data.advertisements)
+                })
+                .catch((error)=>{
+                    console.log(error);
+                })
+        },
+
         updateAdvertisement({commit}, payload){
             axios.put(`/api/advertisements/${payload.id}`, payload)
                 .then((response) => {

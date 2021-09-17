@@ -14,7 +14,8 @@ class Advertisement extends Model
         'img',
         'title',
         'body',
-        'priority'
+        'priority',
+        'postcode_id'
     ];
 
     public function user() {

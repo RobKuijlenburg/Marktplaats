@@ -21,6 +21,11 @@
                 <label :for="rubric.name">{{rubric.name}}</label>
             </div>
         </div>
+            <div>
+                <label for="afstand">afstand</label>
+                <input type="number" name="afstand" v-model="searchDistance">
+                <button @click="searchForDistance">Zoek!!</button>
+            </div>
         </div>
         </div>
     </div>
@@ -33,12 +38,17 @@ export default {
         return {
             searchAdverts: '',
             searchCategories: [],
+            searchDistance: null
         }
     },
 
     methods:{
         checker(arr, target){
             return target.every(v => arr.includes(v));
+        },
+
+        searchForDistance(){
+            this.$store.dispatch('advertisements/searchForDistance', {searchdistance: this.searchDistance})
         }
     },
 

@@ -42,8 +42,8 @@ class Postcode extends Model
                         ) * 180/pi()
                     ) * 60 * 1.1515 * 1.609344
                 )
-            as distance FROM `4pp`
-        ) 4pp
+            as distance FROM `postcodes`
+        ) postcodes
         WHERE distance <= $distance;";
         $postcodesWithinRange = DB::select($query);
         $postcodeIDs = new Collection();

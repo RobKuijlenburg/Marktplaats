@@ -24,6 +24,6 @@ class Create4ppTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('4pp');
+        // Schema::dropIfExists('postcodes');
     }
 }

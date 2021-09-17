@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdvertisementsController;
 use App\Http\Controllers\BidsController;
 use App\Http\Controllers\RubricsController;
+use App\Models\Advertisement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,8 @@ Route::get('/advertisements', [AdvertisementsController::class, 'index']);
 Route::get('/rubrics', [RubricsController::class, 'index']);
 
 Route::post('/advertisements', [AdvertisementsController::class, 'store']);
+
+Route::post('/advertisements/search', [AdvertisementsController::class, 'searchByDistance']);
 
 require __DIR__.'/auth.php';
 

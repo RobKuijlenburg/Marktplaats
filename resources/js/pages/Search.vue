@@ -17,11 +17,11 @@
             <input type="search" v-model="searchAdverts">
             <div class="flex" v-for="rubric in getAllRubrics" :key="rubric.id" v-bind:value="rubric.value">
             <div>
-                <input type="checkbox"   :value="rubric.id" v-model="searchCategories">
+                <input type="checkbox"   :value="rubric.id" v-model="searchRubrics">
                 <label :for="rubric.name">{{rubric.name}}</label>
             </div>
         </div>
-            <div v-if="getLoggedIn">
+            <div>
                 <label for="afstand">afstand</label>
                 <input type="number" name="afstand" v-model="searchDistance">
                 <button @click="searchForDistance">Zoek!!</button>
@@ -37,7 +37,7 @@ export default {
     data() {
         return {
             searchAdverts: '',
-            searchCategories: [],
+            searchRubrics: [],
             searchDistance: null
         }
     },
@@ -55,13 +55,13 @@ export default {
     computed: {
         getAllAdverts() {
             const searchAdverts = this.searchAdverts.trim().toLowerCase();
-            const searchCategories = this.searchCategories;
+            const searchRubrics = this.searchRubrics;
             const adverts = this.$store.getters['advertisements/getAllAdverts'];
             if (!adverts) return [];
 
             return adverts.filter(({title, rubrics}) => {
                 if (searchAdverts && !title.toLowerCase().includes(searchAdverts)) return false;
-                if (searchCategories && !this.checker(rubrics, searchCategories)) return false;
+                if (searchRubrics && !this.checker(rubrics, searchRubrics)) return false;
                 return true;
             });
         },
@@ -72,14 +72,10 @@ export default {
 
         getAllRubrics(){
             return this.$store.getters['rubrics/getAllRubrics']
-        },
-
-        getLoggedIn(){
-            return this.$store.getters['users/getLoginState']
         }
     },
+
     mounted(){
-        this.$store.dispatch('advertisements/getAllAdverts');
         this.$store.dispatch('rubrics/getAllRubrics');
         this.$store.dispatch('users/getUser');
     }

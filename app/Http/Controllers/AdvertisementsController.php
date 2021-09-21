@@ -8,6 +8,7 @@ use App\Models\Advertisement;
 use App\Models\Postcode;
 use App\Models\Rubric;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +24,7 @@ class AdvertisementsController extends Controller
     public function index()
     {
         return response()->json([
-            'advertisements' => AdvertisementResource::collection(Advertisement::orderBy('created_at', 'desc')->get())
+            'advertisements' => AdvertisementResource::collection(Advertisement::orderBy('priority', 'desc')->get())
         ]);
     }
 
@@ -142,7 +143,7 @@ class AdvertisementsController extends Controller
         }
 
         return response()->json([
-            'advertisements' => $itemsWithinRange
+            'advertisements' => AdvertisementResource::collection($itemsWithinRange)
         ]);
 
         // $rubrics = Rubric::get();
@@ -153,5 +154,15 @@ class AdvertisementsController extends Controller
         //     'contentHeader' => "Searching by distance: ".$distance."km from ".$enteredPostcode->woonplaats]);
         // $sections = $view->renderSections();
         // return $sections['page'];
+    }
+
+    public function setPriority(Advertisement $advertisement){
+        
+        $advertisement->update(['priority' => Carbon::now()->format('Y-m-d H:i:s')]);
+
+        return response()->json([
+            'advertisements' => AdvertisementResource::collection(Advertisement::orderBy('priority', 'desc')->get())
+        ]);
+        
     }
 }

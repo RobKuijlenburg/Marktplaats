@@ -50,6 +50,7 @@ export const advertisements = {
             axios.post(`/api/advertisements/search`, payload)
                 .then((response) => {
                     commit('SET_ALL_ADVERTS', response.data.advertisements)
+                        router.push({name: "Search"})
                 })
                 .catch((error)=>{
                     console.log(error);

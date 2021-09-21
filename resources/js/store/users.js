@@ -20,9 +20,9 @@ export const users = {
         },
 
         DESTROY_USER(state){
+            localStorage.removeItem('user')
             state.user = []
-            loggedIn = false
-            localStorage.removeItem('user');
+            state.loggedIn = false
             router.push({name: "Home"})
         }
     },
@@ -47,7 +47,7 @@ export const users = {
         destroyUser({commit}){
             axios.post('/api/logout')
             .then(() => 
-            commit('DESTROY_USER')   
+                commit('DESTROY_USER')   
             ) 
             .catch((error) =>{
                 console.log(error);

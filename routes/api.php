@@ -32,6 +32,8 @@ Route::post('/advertisements/search', [AdvertisementsController::class, 'searchB
 
 require __DIR__.'/auth.php';
 
+Route::put('/setpriority/{advertisement}', [AdvertisementsController::class, 'setPriority']);
+
 Route::put('/advertisements/{advertisement}', [AdvertisementsController::class, 'update']);
 
 Route::get('/bids', [BidsController::class, 'index']);

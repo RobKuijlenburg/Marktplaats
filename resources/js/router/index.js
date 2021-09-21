@@ -7,6 +7,8 @@ import Create from '../pages/Create.vue'
 import Show from '../pages/Show.vue'
 import Dashboard from '../pages/Dashboard.vue'
 import Edit from '../pages/Edit.vue'
+import Search from '../pages/Search.vue'
+import Inbox from '../pages/Inbox.vue'
 
 import Login from '../pages/Auth/Login.vue'
 import Register from '../pages/Auth/Register.vue'
@@ -54,6 +56,12 @@ export default new VueRouter({
             path: "/register",
             name: "Register",
             component: Register
+        },
+
+        {
+            path: "/search",
+            name: "Search",
+            component: Search
         },
 
         {

@@ -7,7 +7,7 @@
             :to="`/edit/${advert.id}/${advert.user_id}`">Edit
             </router-link>
             <a class="m a" @click.prevent="destroyAdvert(advert.id)">Delete</a>
-            <button class="m" :to="{name: 'SetTop'}">Be On Top</button>
+            <button class="m" @click="setPriority(advert.id)">Be On Top</button>
             <ul>
                 <li v-for="bids in advert.bids" :key="bids.id">
                     <span v-html="'&#8364;'"></span>
@@ -37,10 +37,19 @@ export default {
             axios.delete(`/api/delete/${id}`)
                 .then(() => { 
                     router.push({name: "Home"})
-            })
+                })
                 .catch((error) => {
                     console.log(error)
-            })
+                })
+        },
+
+        setPriority(id){
+            axios.put(`/api/setpriority/${id}`)
+                .then(() =>{
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
         }
     },
 

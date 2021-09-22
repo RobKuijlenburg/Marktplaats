@@ -8,6 +8,7 @@ import Show from '../pages/Show.vue'
 import Dashboard from '../pages/Dashboard.vue'
 import Edit from '../pages/Edit.vue'
 import Search from '../pages/Search.vue'
+import Chat from '../pages/Chat/Container.vue'
 import Inbox from '../pages/Inbox.vue'
 
 import Login from '../pages/Auth/Login.vue'
@@ -89,6 +90,12 @@ export default new VueRouter({
                         next()
                     else next({name: "Dashboard"});
             }
+        },
+
+        {
+            path: "/chat",
+            name: "Chat",
+            component: Chat
         }
     ]
 });

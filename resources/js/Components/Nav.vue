@@ -7,6 +7,7 @@
             <li v-if="!getLoggedIn"><router-link class="a" :to="{name: 'Register'}">Register</router-link></li>
             <li v-if="getLoggedIn"><router-link class="a" :to="{path: `/dashboard/${getUser.id}`}">Dashboard</router-link></li>
             <li v-if="getLoggedIn"><a class="a" @click.prevent="removeUser">Logout</a></li>
+            <span v-if="getLoggedIn" class="user"><router-link class="chat" :to="{name: 'Chat'}">Chat</router-link></span>
             <span v-if="getUser" class="user">{{getUser.name}}</span>
         </ul>
         
@@ -43,6 +44,11 @@ export default {
   color: white;
   text-align: center;
   padding: 14px 16px;
+}
+
+.chat {
+  color: white;
+  text-decoration: none;
 }
 
 .navigation {

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdvertisementsController;
 use App\Http\Controllers\BidsController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\RubricsController;
 use App\Models\Advertisement;
 use Illuminate\Http\Request;
@@ -43,3 +44,9 @@ Route::post('/bids', [BidsController::class, 'store']);
 Route::put('/bids/{bid}', [BidsController::class, 'update']);
 
 Route::delete('/delete/{advertisement}', [AdvertisementsController::class, 'destroy']);
+
+Route::middleware('auth')->get('/chat/rooms', [ChatController::class, 'rooms']);
+
+Route::middleware('auth')->get('/chat/room/{roomId}/messages', [ChatController::class, 'messages']);
+
+Route::middleware('auth')->post('/chat/room/{roomId}/message', [ChatController::class, 'newMessage']);

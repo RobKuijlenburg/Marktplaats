@@ -146,14 +146,6 @@ class AdvertisementsController extends Controller
             'advertisements' => AdvertisementResource::collection($itemsWithinRange)
         ]);
 
-        // $rubrics = Rubric::get();
-        // $view = View::make('item.overview', [
-        //     'items' => $itemsWithinRange, 
-        //     'categories' => $rubrics, 
-        //     'enteredPostcode' => $enteredPostcode,
-        //     'contentHeader' => "Searching by distance: ".$distance."km from ".$enteredPostcode->woonplaats]);
-        // $sections = $view->renderSections();
-        // return $sections['page'];
     }
 
     public function setPriority(Advertisement $advertisement){

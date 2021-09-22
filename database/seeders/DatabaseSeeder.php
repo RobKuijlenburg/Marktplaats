@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
             RubricSeeder::class,
             MessageSeeder::class,
             AdvertisementSeeder::class,
-            BidSeeder::class
+            BidSeeder::class,
+            ChatRoomSeeder::class
         ]);
     }
 }

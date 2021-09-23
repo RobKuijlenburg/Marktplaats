@@ -23,6 +23,7 @@
     "dependencies": {
         "axios": "^0.21.1",
         "bootstrap": "^5.0.2",
+        "dotenv": "^10.0.0",
         "laravel-echo": "^1.11.2",
         "pusher-js": "^7.0.3",
         "vue": "^2.6.12",

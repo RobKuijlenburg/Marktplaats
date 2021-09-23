@@ -1,6 +1,7 @@
 import {createVuePlugin} from 'vite-plugin-vue2';
 import copy from 'rollup-plugin-copy';
-// require('dotenv').config();
+require('dotenv').config();
+// require('./bootstrap.js');
 
 export default ({command}) => {
     const production = command !== 'serve';

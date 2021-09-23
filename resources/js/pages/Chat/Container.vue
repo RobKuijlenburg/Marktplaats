@@ -48,11 +48,37 @@ export default {
         }
     },
 
+    watch: {
+        currentRoom( val, Oldval) {
+            if( Oldval.id){
+                this.disconnect( Oldval )
+            }
+            this.connect();
+        }
+    },
+
     methods: {
+        connect() {
+            if(this.currentRoom.id) {
+                let vm = this;
+                this.getMessages();
+                window.Echo.private("chat."+this.currentRoom.id)
+                .listen('NewChatMessage',e=>{
+                vm.getMessages();
+                // window.Echo.private("chat." + this.currentRoom.id)
+                // .listen('.message.new', e => {
+                //     vm.getMessages();
+                })
+            }
+        },
+
+        disconnect( room ) {
+            window.Echo.leave("chat." + room.id );
+        },
+
         getRooms(){
             axios.get('/api/chat/rooms')
-            .then( response => {
-               
+            .then( response => {   
                 this.chatRooms = response.data.rooms;
                 this.setRoom (response.data.rooms[0]);
             })
@@ -62,7 +88,6 @@ export default {
         }, 
         setRoom( room ) {
             this.currentRoom = room;
-            this.getMessages();
         },
         getMessages() {
             axios.get('/api/chat/room/' + this.currentRoom.id + '/messages')

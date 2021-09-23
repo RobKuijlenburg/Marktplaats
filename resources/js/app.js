@@ -1,3 +1,5 @@
+import "./bootstrap.js";
+
 import Vue from "vue";
 
 //Main pages
@@ -8,6 +10,7 @@ import store from "./store";
 
 //Import router
 import router from "./router";
+
 
 import '../css/app.scss'
 // import '../css/app.css'

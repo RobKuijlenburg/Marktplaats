@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="h-full p-2 flex flex-col-reverse overflow-scroll">
+        <div class="mc">
             <div v-for="(message, index) in messages" :key="index">
                 <message-item-vue :message="message"></message-item-vue>
             </div>
@@ -18,3 +18,13 @@ export default {
     props: ['messages'],
 }
 </script>
+
+<style scoped>
+    .mc{
+        height: 500px;
+        padding: 0.5rem;
+        display: flex;
+        flex-direction: column-reverse;
+        overflow: scroll;
+    }
+</style>

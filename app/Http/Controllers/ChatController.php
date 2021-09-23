@@ -8,6 +8,7 @@ use App\Models\ChatMessage;
 use App\Models\ChatRoom;
 use Illuminate\Support\Facades\Auth;
 use App\Events\NewChatMessage;
+use Carbon\Carbon;
 
 class ChatController extends Controller
 {

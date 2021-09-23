@@ -10,7 +10,7 @@ import store from "./store";
 import router from "./router";
 
 import '../css/app.scss'
-import '../css/app.css'
+// import '../css/app.css'
 
 new Vue({
     el: "#app",

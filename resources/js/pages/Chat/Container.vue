@@ -2,7 +2,12 @@
     <div>
         <div>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Chat
+                <chat-room-selection-vue
+                    v-if="currentRoom.id"
+                    :rooms="chatRooms"
+                    :currentRoom="currentRoom"
+                    v-on:roomchanged="setRoom( $event )"
+                />
             </h2>
         </div>
         <div>
@@ -23,12 +28,15 @@
 
 import MessageContainer from './MessageContainer.vue'
 import InputMessage from './InputMessage.vue'
+import ChatRoomSelectionVue from './ChatRoomSelection.vue'
 import axios from 'axios'
+
 
 export default {
     components: {
         MessageContainer,
         InputMessage,
+        ChatRoomSelectionVue
     },
 
     data(){

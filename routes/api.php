@@ -50,3 +50,5 @@ Route::middleware('auth')->get('/chat/rooms', [ChatController::class, 'rooms']);
 Route::middleware('auth')->get('/chat/room/{roomId}/messages', [ChatController::class, 'messages']);
 
 Route::middleware('auth')->post('/chat/room/{roomId}/message', [ChatController::class, 'newMessage']);
+
+Route::middleware('auth')->post('/chat/newroom/', [ChatController::class, 'newRoom']);

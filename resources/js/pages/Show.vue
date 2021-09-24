@@ -33,7 +33,11 @@ export default {
             bids: {
                 advertisement_id: parseInt(this.$route.params.id),
                 bid: 0
-            }
+            },
+
+            // newRoom: {
+            //     receiver_id: 
+            // }
         }
     },
 

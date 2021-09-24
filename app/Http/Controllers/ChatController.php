@@ -39,4 +39,13 @@ class ChatController extends Controller
 
         return $newMessage;
     }
+
+    public function newRoom( Request $request ){
+        $newRoom = $request;
+        dd($newRoom);
+        $newRoom->user_id = Auth::id();
+        $newRoom->save();
+
+        return $newRoom;
+    }
 }
